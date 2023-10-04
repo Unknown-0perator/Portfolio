@@ -1,3 +1,5 @@
+@use './typography' as *;
+
 *,
 *::before,
 *::after {
@@ -8,6 +10,12 @@
 
 html {
     box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inconsolata';
+    font-weight: 400;
+    background: #1E1E1E;
 }
 
 a,

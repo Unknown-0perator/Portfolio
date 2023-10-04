@@ -1,8 +1,9 @@
 import './LandingPage.scss'
+import Header from '../../components/Header/Header';
 
 const LandingPage = () => {
     return (
-        <h1>hello</h1>
+        <Header />
     )
 }
 
