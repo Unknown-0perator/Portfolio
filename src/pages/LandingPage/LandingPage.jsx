@@ -1,9 +1,13 @@
 import './LandingPage.scss'
 import Header from '../../components/Header/Header';
+import Banner from '../../components/Banner/Banner';
 
 const LandingPage = () => {
     return (
-        <Header />
+        <>
+            <Header />
+            <Banner />
+        </>
     )
 }
 
