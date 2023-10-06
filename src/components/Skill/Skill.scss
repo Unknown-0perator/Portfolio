@@ -1,0 +1,40 @@
+.skill {
+    --gap: 1rem;
+    position: relative;
+    display: flex;
+    overflow: hidden;
+    user-select: none;
+    gap: var(--gap);
+
+    &__list {
+        flex-shrink: 0;
+        display: flex;
+        justify-content: space-around;
+        gap: var(--gap);
+        min-width: 100%;
+        animation: scroll 30s linear infinite;
+    }
+
+    &__item {
+        display: flex;
+        -webkit-box-align: center;
+        align-items: center;
+        font-style: italic;
+        color: #808080;
+        font-size: 56px;
+        font-weight: 600;
+        text-transform: uppercase;
+        line-height: 100%;
+        -webkit-font-smoothing: antialiased;
+    }
+}
+
+@keyframes scroll {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(calc(-100% - var(--gap)));
+    }
+}
