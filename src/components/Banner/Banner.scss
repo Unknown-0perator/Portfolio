@@ -6,6 +6,8 @@
     padding: 40px 12vw;
     gap: 8rem;
 
+    &::after {}
+
     &__text-container {
         display: flex;
         flex-direction: column;

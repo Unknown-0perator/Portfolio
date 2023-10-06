@@ -7,6 +7,7 @@ const LandingPage = () => {
         <>
             <Header />
             <Banner />
+            <div className="divider"></div>
         </>
     )
 }
