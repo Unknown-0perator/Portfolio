@@ -73,7 +73,9 @@
         gap: 4px;
     }
 
-    &__icon {}
+    &__icon {
+        height: 48px;
+    }
 
     &__name {
         color: $color-white;
