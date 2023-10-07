@@ -4,6 +4,7 @@ import Banner from '../../components/Banner/Banner';
 import Divider from '../../components/Divider/Divider';
 import About from '../../components/About/About';
 import Skill from '../../components/Skill/Skill';
+import Project from '../../components/Project/Project';
 
 const LandingPage = () => {
     return (
@@ -13,6 +14,7 @@ const LandingPage = () => {
             <Divider />
             <About />
             <Skill />
+            <Project />
         </>
     )
 }
