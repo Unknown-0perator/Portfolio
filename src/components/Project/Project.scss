@@ -1,10 +1,19 @@
 @use '../../styles/partials/variables' as *;
+@use '../../styles/partials/mixins' as *;
 
 .project-section {
-    padding: 40px 12vw;
+    padding: 24px 1rem;
     display: flex;
     flex-direction: column;
     gap: 2rem;
+
+    @include tablet {
+        padding: 32px 36px;
+    }
+
+    @include desktop {
+        padding: 40px 12vw;
+    }
 }
 
 .project {
@@ -16,23 +25,35 @@
 
     &__title-container {
         display: flex;
-        padding: 1rem;
+        padding: 10px 1rem;
         border-bottom: 1px solid #808080;
         background: #333;
+
+        @include tablet {
+            padding: 1rem;
+        }
     }
 
     &__title {
         color: $color-white;
         text-transform: uppercase;
-        font-size: 20px;
+        font-size: 14px;
         font-weight: 600;
+
+        @include tablet {
+            font-size: 16px;
+        }
 
     }
 
     &__toolbar-container {
         border-bottom: 1px solid #808080;
         background: #2E333F;
-        padding: 1rem;
+        padding: 10px 1rem;
+
+        @include tablet {
+            padding: 1rem;
+        }
     }
 
     &__toolbar {
@@ -42,7 +63,13 @@
         gap: 3rem;
     }
 
-    &__toolbar-icon {}
+    &__toolbar-icon {
+        width: 8px;
+
+        @include tablet {
+            width: 10px;
+        }
+    }
 
     &__detail-container {
         display: flex;
@@ -50,13 +77,23 @@
         width: 100%;
         flex: 1;
         height: 65vh;
+        flex-direction: column;
+
+        @include tablet {
+            flex-direction: row;
+        }
     }
 
     &__detail {
-        width: 75%;
+        width: 100%;
         display: flex;
         padding: 1rem;
         background-color: #404453;
+        flex: 1;
+
+        @include tablet {
+            width: 75%;
+        }
 
     }
 
@@ -74,13 +111,21 @@
     }
 
     &__icon {
-        height: 48px;
+        height: 32px;
+
+        @include tablet {
+            height: 42px;
+        }
     }
 
     &__name {
         color: $color-white;
-        font-size: 1rem;
-        font-weight: 600;
+        font-size: 12px;
+        font-weight: 400;
+
+        @include tablet {
+            font-size: 14px;
+        }
 
     }
 
@@ -89,13 +134,16 @@
 
 .sidebar {
     display: flex;
-    justify-content: stretch;
     align-items: center;
-
     background: #343945;
-    width: 25%;
+    width: 100%;
     padding: .5rem 0;
-    flex: 1;
+
+
+    @include tablet {
+        width: 25%;
+        justify-content: stretch;
+    }
 
     &__list {
         list-style: none;
@@ -113,10 +161,14 @@
         align-items: center;
         gap: 4px;
         color: #888D99;
-        font-size: 1rem;
+        font-size: 14px;
         font-weight: 600;
         text-transform: uppercase;
         padding: .5rem;
+
+        @include tablet {
+            font-size: 16px;
+        }
 
         &--active {
             color: $color-white;
@@ -124,5 +176,11 @@
         }
     }
 
-    &__icon {}
+    &__icon {
+        height: 18px;
+
+        @include tablet {
+            height: 20px;
+        }
+    }
 }
