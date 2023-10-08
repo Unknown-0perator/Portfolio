@@ -1,5 +1,6 @@
 import './Banner.scss';
-import maximizeIcon from '../../assests/icons/maximize.svg'
+
+import Terminal from '../Terminal/Terminal';
 
 const Banner = () => {
     return (
@@ -11,13 +12,7 @@ const Banner = () => {
                 </div>
                 <h2 className="banner__sub-heading">Software Engineer & Full-Stack Developer</h2>
             </div>
-            <div className="terminal">
-                <div className="terminal__toolbar-container">
-                    <h3 className="terminal__heading">Terminal</h3>
-                    <img src={maximizeIcon} alt="" className="terminal__icon" />
-                </div>
-                <div className="terminal__area"></div>
-            </div>
+            <Terminal />
         </section>
     )
 
