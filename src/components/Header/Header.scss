@@ -5,6 +5,7 @@
     top: 0;
     width: 100%;
     padding: 1rem;
+    z-index: 100000;
 }
 
 .header {
@@ -13,18 +14,17 @@
     justify-content: space-between;
     flex-direction: column;
     background-color: #1E1E1E;
-    z-index: 100000;
     border: 1px solid #808080;
     border-radius: 12px;
 
     @include tablet {
         flex-direction: row;
         align-items: center;
-        padding: 1rem 36px;
+        padding: 1rem 1.25rem;
     }
 
     @include desktop {
-        padding: 1.5rem 12vw;
+        padding: 1.5rem calc(12vw - 1rem);
     }
 
     &__wrapper {

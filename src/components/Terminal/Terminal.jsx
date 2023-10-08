@@ -87,9 +87,6 @@ const Terminal = () => {
 
     const inputRef = useRef();
 
-    useEffect(() => {
-        inputRef.current.focus();
-    }, [])
     return (
         <section className="terminal" onClick={e => {
             inputRef.current.focus();
