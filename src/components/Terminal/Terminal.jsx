@@ -3,10 +3,26 @@ import maximizeIcon from '../../assests/icons/maximize.svg';
 import { useState } from 'react';
 import { useRef } from 'react';
 import { useEffect } from 'react';
+import ReactDOM from 'react-dom';
+
+const CommandList = () => {
+    return (
+        <>
+            '<span class="command">about</span>          About me',
+            '<span class="command">github</span>         GitHub Account',
+            '<span class="command">linkedIn</span>       LinkedIn Account',
+            '<span class="command">projects</span>       My Projects',
+            '<span class="command">history</span>        Commands History',
+            '<span class="command">help</span>           Help',
+            '<span class="command">clear</span>          Clear Terminal',
+        </>
+    )
+}
 
 const Terminal = () => {
     const [terminalInput, setTerminalInput] = useState("");
     const [commentHistory, setCommentHistory] = useState([])
+
 
 
     const handleInputChange = (e) => {
@@ -19,6 +35,16 @@ const Terminal = () => {
         }
     }
 
+    const formatInput = (text) => {
+        return text.replace(/(\r\n|\n|\r)/g, '');
+    }
+
+    const addTerminalOutput = (output) => {
+        const terminalOutputContainer = terminalOutputRef.current;
+        ReactDOM.render(output, terminalOutputContainer)
+    }
+
+
     const terminalOutputRef = useRef();
     const addLine = (text) => {
         const newLine = document.createElement('p');
@@ -30,10 +56,10 @@ const Terminal = () => {
     }
 
     const commander = (command) => {
-        console.log(command)
-        switch (command.toLowerCase()) {
+        switch (formatInput(command.toLowerCase())) {
             case "help":
                 addLine(`Unknown-0perator$: ${terminalInput}`);
+                addTerminalOutput(<CommandList />)
                 break;
             case "clear":
                 addLine(`Unknown-0perator$: ${terminalInput}`);
