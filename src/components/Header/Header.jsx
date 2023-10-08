@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 
 
 // Define the Header component
-const Header = ({ isLoggedIn, setIsLoggedIn }) => {
+const Header = () => {
 
     // State to manage mobile screen navbar menu
     const [menuOpen, setMenuOpen] = useState(false)
@@ -20,30 +20,32 @@ const Header = ({ isLoggedIn, setIsLoggedIn }) => {
     }
 
     return (
-        <header className="header">
-            <div className="header__wrapper">
-                <Link to='/' className="header__logo">Ahmad Akhtar</Link>
-                <div className={menuOpen ? 'header__menu header__menu--close' : "header__menu"} onClick={() => {
-                    setMenuOpen(!menuOpen)
-                }}></div>
+        <header className="header-section">
+            <div className="header">
+                <div className="header__wrapper">
+                    <Link to='/' className="header__logo">Ahmad Akhtar</Link>
+                    <div className={menuOpen ? 'header__menu header__menu--close' : "header__menu"} onClick={() => {
+                        setMenuOpen(!menuOpen)
+                    }}></div>
+                </div>
+                <nav className={menuOpen ? 'navbar navbar--close' : "navbar"}>
+
+                    <ul className='navbar__list'>
+
+                        <li className="navbar__item">
+                            <Link to='/' onClick={menuClose} className="navbar__link">./About</Link>
+                        </li>
+                        <li className="navbar__item">
+                            <Link to='/' onClick={menuClose} className="navbar__link">./Project</Link>
+                        </li>
+                        <li className="navbar__item">
+                            <button onClick={menuClose} className="navbar__link navbar__link--download"><img src={downloadIcon} alt="" className='navbar__icon' />Resume</button>
+                        </li>
+
+                    </ul>
+
+                </nav>
             </div>
-            <nav className={menuOpen ? 'navbar navbar--close' : "navbar"}>
-
-                <ul className='navbar__list'>
-
-                    <li className="navbar__item">
-                        <Link to='/' onClick={menuClose} className="navbar__link">./About</Link>
-                    </li>
-                    <li className="navbar__item">
-                        <Link to='/' onClick={menuClose} className="navbar__link">./Project</Link>
-                    </li>
-                    <li className="navbar__item">
-                        <button onClick={menuClose} className="navbar__link navbar__link--download"><img src={downloadIcon} alt="" />Resume</button>
-                    </li>
-
-                </ul>
-
-            </nav>
         </header>
     )
 }
