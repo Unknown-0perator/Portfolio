@@ -1,33 +1,60 @@
+@use '../../styles/partials/mixins' as *;
+
 .banner {
-    height: calc(100vh - 85px);
+    height: 150vh;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: space-between;
-    padding: 40px 12vw;
-    gap: 8rem;
+    justify-content: space-around;
+    padding: 2rem;
+    margin-top: 10rem;
+    gap: 10rem;
+
+    @include tablet {
+        height: 100vh;
+        flex-direction: row;
+        justify-content: space-around;
+        gap: 2rem;
+        padding: 24px 36px;
+        margin: 0;
+    }
+
+    @include desktop {
+        padding: 48px 12vw;
+    }
 
     &::after {}
 
     &__text-container {
         display: flex;
         flex-direction: column;
-        gap: 28px;
+        gap: 1rem;
         width: 100%;
     }
 
     &__heading-container {}
 
     &__heading {
-        font-size: 64px;
+        font-size: 36px;
         font-weight: 700;
         line-height: 70px;
         color: #fff;
+        line-height: 42px;
+
+        @include tablet {
+            font-size: 48px;
+            line-height: 54px;
+        }
     }
 
     &__sub-heading {
-        font-size: 20px;
+        font-size: 14px;
         font-weight: 400;
         color: #fff;
+
+        @include tablet {
+            font-size: 16px;
+        }
     }
 
 }

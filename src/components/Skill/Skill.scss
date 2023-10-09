@@ -1,10 +1,16 @@
+@use '../../styles/partials/mixins' as *;
+
 .skill {
-    --gap: 3rem;
+    --gap: 1rem;
     position: relative;
     display: flex;
     overflow: hidden;
     user-select: none;
     gap: var(--gap);
+
+    @include tablet {
+        --gap: 2.5rem
+    }
 
     &__list {
         flex-shrink: 0;
@@ -21,11 +27,15 @@
         align-items: center;
         font-style: italic;
         color: #808080;
-        font-size: 56px;
+        font-size: 24px;
         font-weight: 600;
         text-transform: uppercase;
         line-height: 100%;
         -webkit-font-smoothing: antialiased;
+
+        @include tablet {
+            font-size: 48px;
+        }
     }
 }
 

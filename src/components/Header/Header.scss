@@ -1,20 +1,30 @@
 @use '../../styles/partials/mixins' as *;
 
+.header-section {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 1rem;
+    z-index: 100000;
+}
+
 .header {
     padding: 1rem;
-    width: 100%;
     display: flex;
     justify-content: space-between;
     flex-direction: column;
+    background-color: #1E1E1E;
+    border: 1px solid #808080;
+    border-radius: 12px;
 
     @include tablet {
         flex-direction: row;
         align-items: center;
-        padding: 1rem 36px;
+        padding: 1rem 1.25rem;
     }
 
     @include desktop {
-        padding: 1.5rem 12vw;
+        padding: 1.5rem calc(12vw - 1rem);
     }
 
     &__wrapper {
@@ -25,8 +35,13 @@
 
     &__logo {
         color: #23b6d8;
-        font-size: 32px;
+        font-size: 16px;
         font-weight: 700;
+        letter-spacing: 1px;
+
+        @include tablet {
+            font-size: 22px;
+        }
     }
 
     &__menu {
@@ -38,7 +53,7 @@
         &,
         &::before,
         &::after {
-            width: 2rem;
+            width: 1.5rem;
             height: 2px;
             background-color: #ffffff;
             display: inline-block;
@@ -57,11 +72,11 @@
         }
 
         &::before {
-            top: -.6rem;
+            top: -.5rem;
         }
 
         &::after {
-            top: .6rem;
+            top: .5rem;
         }
 
         &--close {
@@ -122,12 +137,12 @@
     }
 
     &__link {
-        font-size: 24px;
+        font-size: 14px;
         font-weight: 600;
         color: #ffffff;
 
         @include tablet {
-            font-size: 24px;
+            font-size: 18px;
         }
 
         &--download {
@@ -138,6 +153,14 @@
             border: none;
             color: #23b6d8;
             gap: 4px;
+        }
+    }
+
+    &__icon {
+        width: 20px;
+
+        @include tablet {
+            width: 24px;
         }
     }
 
