@@ -7,7 +7,6 @@ import folderIcon from '../../assests/icons/folder.svg';
 import textIcon from '../../assests/icons/text.svg';
 import videoIcon from '../../assests/icons/video.svg';
 import closeIcon from '../../assests/icons/close.svg';
-import taskEaseLogo from '../../assests/logo/taskease.svg';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import data from '../../assests/data/data.json';
@@ -86,7 +85,7 @@ const Project = () => {
                                     <ul className="project__list">
                                         <li className="project__item" onClick={handleDescriptionOpen}>
                                             <img src={textIcon} alt="" className="project__icon" />
-                                            <p className="project__name">Description.txt</p>
+                                            <p className="project__name">Desc.txt</p>
                                         </li>
                                         <li className="project__item" onClick={handleDescriptionOpen}>
                                             <img src={videoIcon} alt="" className="project__icon" />
@@ -102,7 +101,9 @@ const Project = () => {
                                             <img onClick={handleClose} src={closeIcon} alt="" className="description__icon" />
                                         </div>
                                         <div className="description__detail-container">
-                                            <img src={taskEaseLogo} alt="" className="description__logo" />
+                                            <div className="description__logo-container">
+                                                <img src={`${process.env.PUBLIC_URL}${projectDetails.logo}`} alt="" className="description__logo" />
+                                            </div>
                                             <h2 className="description__name">{projectDetails.name}</h2>
                                             <h3 className="description__title">Introduction</h3>
                                             <p className="description__detail">
