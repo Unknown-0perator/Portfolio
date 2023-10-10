@@ -11,6 +11,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import data from '../../assests/data/data.json';
 import ProjectDetail from '../ProjectDetail/ProjectDetail';
+import VideoPlayer from '../VideoPlayer/VideoPlayer';
 
 
 
@@ -91,7 +92,8 @@ const Project = () => {
                                 )}</>) : (
                             <>
                                 {textOpen ? (
-                                    <ProjectDetail projectDetails={projectDetails} handleClose={handleClose} />
+                                    // <ProjectDetail projectDetails={projectDetails} handleClose={handleClose} />
+                                    <VideoPlayer />
                                 ) : (<></>)}</>)}
                     </div>
                 </div>
