@@ -24,7 +24,8 @@
             "repo": {
                 "Front-end Repo": "https://github.com/Unknown-0perator/TaskEase",
                 "Back-end Repo": "https://github.com/Unknown-0perator/TaskEase-API"
-            }
+            },
+            "video": "/videos/taskease.mp4"
         },
         "Pat-Doc": {
             "name": "Pat-Doc",

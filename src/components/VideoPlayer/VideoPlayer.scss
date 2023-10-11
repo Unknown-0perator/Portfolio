@@ -13,6 +13,18 @@
     position: relative;
     width: 100%;
     flex: 1;
+
+    &.played {
+        .control__icon--play {
+            display: none;
+        }
+    }
+
+    &:not(.played) {
+        .control__icon--pause {
+            display: none;
+        }
+    }
 }
 
 
@@ -79,9 +91,38 @@
         border-radius: 4px;
         background-color: #808080;
         transition: all .1s ease-in-out;
+
+        &::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            right: calc(100% - var(--preview-position) * 100%);
+            background-color: #CCCCCC;
+
+        }
+
+        &::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            right: calc(100% - var(--progress-position) * 100%);
+            background-color: #fff;
+        }
     }
 
 
 }
 
-.video-player {}
+.video-player {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100% - 41px);
+    justify-self: center;
+    width: 100%;
+    background-color: #CCCCCC;
+}

@@ -9,12 +9,11 @@ import closeIcon from '../../assests/icons/close.svg';
 const VideoPlayer = () => {
 
     const [isPlay, setIsPlay] = useState(false)
-    const [isFullScreen, setIsFullScreen] = useState(false)
-    const [isVolumeUp, setIsVolumeUp] = useState(false)
+
+
     const video = useRef(null)
     const videoContainer = useRef(null)
-    const totalTimer = useRef(null)
-    const currentTimer = useRef(null)
+
     const progressBarContainer = useRef(null)
     const togglePlay = () => {
         setIsPlay(!isPlay)
@@ -26,20 +25,8 @@ const VideoPlayer = () => {
     }
 
 
-    const leadingZeroFormatter = new Intl.NumberFormat(undefined, {
-        minimumIntegerDigits: 2
-    })
-    const formatDuration = (time) => {
-        const seconds = Math.floor(time % 60)
-        const minutes = Math.floor(time / 60) % 60
-        const hours = Math.floor(time / 3600)
 
-        if (hours === 0) {
-            return `${minutes}:${leadingZeroFormatter.format(seconds)}`
-        } else {
-            return `${hours}:${leadingZeroFormatter.format(minutes)}:${leadingZeroFormatter.format(seconds)}`
-        }
-    }
+
 
     document.addEventListener('mouseup', e => {
         if (isScrubbing) toggleScrubbing(e)
@@ -64,7 +51,6 @@ const VideoPlayer = () => {
 
             }
         }
-        handleTimelineUpdate(e)
     }
 
     const handleTimelineUpdate = (e) => {
@@ -85,11 +71,11 @@ const VideoPlayer = () => {
                 <h3 className="description__project-name">TaskEase</h3>
                 <img src={closeIcon} alt="" className="description__icon" />
             </div>
-            <div className={`video-player-container`} ref={videoContainer}>
+            <div className={`video-player-container ${isPlay ? 'played' : ""}`} ref={videoContainer}>
                 <div className="control">
                     <div className="control__item control__item--play-pause" onClick={togglePlay}>
                         <img src={playIcon} alt="play icon" className="control__icon control__icon--play" />
-                        {/* <img src={pauseIcon} alt="pause icon" className="control__icon control__icon--pause" /> */}
+                        <img src={pauseIcon} alt="pause icon" className="control__icon control__icon--pause" />
                     </div>
                     <div className="control__item control__timeline">
                         <div className="control__progress-bar-container" ref={progressBarContainer} onMouseMove={handleTimelineUpdate} onMouseDown={toggleScrubbing}>
@@ -101,23 +87,23 @@ const VideoPlayer = () => {
                         </div>
                     </div>
                 </div>
+
                 <video
-                    src={``}
+
+                    src={`${process.env.PUBLIC_URL}/videos/taskease.mp4`}
                     type="video/mp4"
                     className="video-player"
                     poster={``}
                     ref={video}
-                    onLoadedData={() => {
-                        totalTimer.current.textContent = formatDuration(video.current.duration)
-                    }}
+
                     onTimeUpdate={() => {
-                        currentTimer.current.textContent = formatDuration(video.current.currentTime)
                         const percent = video.current.currentTime / video.current.duration;
                         progressBarContainer.current.style.setProperty('--progress-position', percent)
-                    }}>
+                    }}
+                >
                 </video>
             </div>
-        </div>
+        </div >
     )
 }
 
