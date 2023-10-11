@@ -23,11 +23,19 @@ const Project = () => {
     const [projectOpen, setProjectOpen] = useState(false)
     const [textOpen, setTextOpen] = useState(false)
     const [currentProject, setCurrentProject] = useState("")
+    const [videoOpen, setVideoOpen] = useState(false)
 
 
     const handleDescriptionOpen = () => {
         setFolderStructure(false);
+        setVideoOpen(false);
         setTextOpen(true)
+    }
+
+    const handVideoOpen = () => {
+        setFolderStructure(false);
+        setTextOpen(false);
+        setVideoOpen(true);
     }
 
     const handleClose = () => {
@@ -50,7 +58,10 @@ const Project = () => {
                             e.preventDefault();
                             setProjectOpen(false);
                         }} src={backIcon} alt="" className="project__toolbar-icon" />
-                        <img src={frontIcon} alt="" className="project__toolbar-icon" />
+                        <img onClick={e => {
+                            e.preventDefault();
+                            setProjectOpen(true)
+                        }} src={frontIcon} alt="" className="project__toolbar-icon" />
                     </div>
                 </div>
                 <div className="project__detail-container">
@@ -84,7 +95,7 @@ const Project = () => {
                                             <img src={textIcon} alt="" className="project__icon" />
                                             <p className="project__name">Desc.txt</p>
                                         </li>
-                                        <li className="project__item" onClick={handleDescriptionOpen}>
+                                        <li className="project__item" onClick={handVideoOpen}>
                                             <img src={videoIcon} alt="" className="project__icon" />
                                             <p className="project__name">Demo.video</p>
                                         </li>
@@ -92,9 +103,12 @@ const Project = () => {
                                 )}</>) : (
                             <>
                                 {textOpen ? (
-                                    // <ProjectDetail projectDetails={projectDetails} handleClose={handleClose} />
-                                    <VideoPlayer />
-                                ) : (<></>)}</>)}
+                                    <ProjectDetail projectDetails={projectDetails} handleClose={handleClose} />
+                                ) : (<>
+                                    {videoOpen ? (
+                                        <VideoPlayer projectDetails={projectDetails} handleClose={handleClose} />
+                                    ) : (<></>)}
+                                </>)}</>)}
                     </div>
                 </div>
             </div>

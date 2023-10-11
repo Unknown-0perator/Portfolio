@@ -6,7 +6,7 @@ import pauseIcon from '../../assests/icons/pause.svg';
 import scrubbingIcon from '../../assests/icons/scrub.svg';
 import closeIcon from '../../assests/icons/close.svg';
 
-const VideoPlayer = () => {
+const VideoPlayer = ({ projectDetails, handleClose }) => {
 
     const [isPlay, setIsPlay] = useState(false)
 
@@ -69,7 +69,7 @@ const VideoPlayer = () => {
         <div className="video-player-section">
             <div className="description__toolbar-container">
                 <h3 className="description__project-name">TaskEase</h3>
-                <img src={closeIcon} alt="" className="description__icon" />
+                <img src={closeIcon} onClick={handleClose} alt="" className="description__icon" />
             </div>
             <div className={`video-player-container ${isPlay ? 'played' : ""}`} ref={videoContainer}>
                 <div className="control">
