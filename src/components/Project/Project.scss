@@ -1,0 +1,186 @@
+@use '../../styles/partials/variables' as *;
+@use '../../styles/partials/mixins' as *;
+
+.project-section {
+    padding: 24px 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    @include tablet {
+        padding: 32px 36px;
+    }
+
+    @include desktop {
+        padding: 40px 12vw;
+    }
+}
+
+.project {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    border: 1px solid #808080;
+    min-height: 75vh;
+
+    &__title-container {
+        display: flex;
+        padding: 10px 1rem;
+        border-bottom: 1px solid #808080;
+        background: #333;
+
+        @include tablet {
+            padding: 1rem;
+        }
+    }
+
+    &__title {
+        color: $color-white;
+        text-transform: uppercase;
+        font-size: 14px;
+        font-weight: 600;
+
+        @include tablet {
+            font-size: 16px;
+        }
+
+    }
+
+    &__toolbar-container {
+        border-bottom: 1px solid #808080;
+        background: #2E333F;
+        padding: 10px 1rem;
+
+        @include tablet {
+            padding: 1rem;
+        }
+    }
+
+    &__toolbar {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 3rem;
+    }
+
+    &__toolbar-icon {
+        width: 8px;
+
+        @include tablet {
+            width: 10px;
+        }
+    }
+
+    &__detail-container {
+        display: flex;
+        align-items: stretch;
+        width: 100%;
+        flex: 1;
+        height: 65vh;
+        flex-direction: column;
+
+        @include tablet {
+            flex-direction: row;
+        }
+    }
+
+    &__detail {
+        width: 100%;
+        display: flex;
+        padding: 1rem;
+        background-color: #404453;
+        flex: 1;
+
+        @include tablet {
+            width: 75%;
+        }
+
+    }
+
+    &__list {
+        list-style: none;
+        display: flex;
+        gap: 1rem;
+    }
+
+    &__item {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        gap: 4px;
+    }
+
+    &__icon {
+        height: 32px;
+
+        @include tablet {
+            height: 42px;
+        }
+    }
+
+    &__name {
+        color: $color-white;
+        font-size: 12px;
+        font-weight: 400;
+
+        @include tablet {
+            font-size: 14px;
+        }
+
+    }
+
+
+}
+
+.sidebar {
+    display: flex;
+    align-items: center;
+    background: #343945;
+    width: 100%;
+    padding: .5rem 0;
+
+
+    @include tablet {
+        width: 25%;
+        justify-content: stretch;
+    }
+
+    &__list {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        flex: 1;
+        justify-content: stretch;
+        height: 100%;
+    }
+
+    &__item {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 4px;
+        color: #888D99;
+        font-size: 14px;
+        font-weight: 600;
+        text-transform: uppercase;
+        padding: .5rem;
+
+        @include tablet {
+            font-size: 16px;
+        }
+
+        &--active {
+            color: $color-white;
+            background-color: #5295e2;
+        }
+    }
+
+    &__icon {
+        height: 18px;
+
+        @include tablet {
+            height: 20px;
+        }
+    }
+}

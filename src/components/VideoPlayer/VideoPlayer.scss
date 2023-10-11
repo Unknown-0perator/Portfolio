@@ -1,0 +1,128 @@
+@use '../../styles/partials/mixins' as *;
+@use '../../styles/partials/variables' as *;
+
+.video-player-section {
+    width: 100%;
+    border: 1px solid #808080;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.video-player-container {
+    position: relative;
+    width: 100%;
+    flex: 1;
+
+    &.played {
+        .control__icon--play {
+            display: none;
+        }
+    }
+
+    &:not(.played) {
+        .control__icon--pause {
+            display: none;
+        }
+    }
+}
+
+
+.control {
+    position: absolute;
+    bottom: 0;
+    background-color: #333;
+    width: 100%;
+    display: flex;
+    padding: 10px 1rem;
+    align-items: center;
+    gap: 1rem;
+
+    &__item {
+        &--play-pause {}
+    }
+
+    &__icon {
+        width: 14px;
+
+        &--play {}
+
+        &--pause {}
+
+        &--scrub {
+            position: absolute;
+            height: 16px;
+            transform: translateX(-50%) scale(1);
+            top: -80%;
+            left: (calc(var(--progress-position) * 100%));
+            transition: transform .2s ease-in-out;
+            z-index: 200;
+        }
+    }
+
+    &__timeline {
+        flex-grow: 1;
+    }
+
+    &__progress-bar-container {
+        width: 100%;
+        height: 6px;
+        margin-inline: 4px;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        position: relative;
+        transition: all .1s ease-in-out;
+
+        &:hover {
+            .control__progress-bar {
+                height: 100%;
+            }
+
+            .control__progress-bar::before {
+                display: block;
+            }
+        }
+    }
+
+    &__progress-bar {
+        width: 100%;
+        height: 4px;
+        border-radius: 4px;
+        background-color: #808080;
+        transition: all .1s ease-in-out;
+
+        &::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            right: calc(100% - var(--preview-position) * 100%);
+            background-color: #CCCCCC;
+
+        }
+
+        &::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            right: calc(100% - var(--progress-position) * 100%);
+            background-color: #fff;
+        }
+    }
+
+
+}
+
+.video-player {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100% - 41px);
+    justify-self: center;
+    width: 100%;
+    background-color: #CCCCCC;
+}

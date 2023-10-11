@@ -1,0 +1,52 @@
+{
+    "projects": [
+        "TaskEase",
+        "Pat-Doc"
+    ],
+    "project_details": {
+        "TaskEase": {
+            "name": "TaskEase",
+            "logo": "/images/taskease.svg",
+            "introduction": "TaskEase was born out of a desire to solve the problem of finding quick help for short-term tasks. Whether it's moving, cleaning, or any odd job, TaskEase streamlines the process. Users can post task details, location, and compensation, and task helpers can offer their assistance based on their availability and skills. Task posters can review task helper profiles and choose the most suitable candidate for their task.",
+            "features": [
+                "Responsive",
+                "Effortless Task Posting and Browsing",
+                "Task Details and Task Locations on Map",
+                "Task Matching and Acceptance"
+            ],
+            "technologies": {
+                "Front-End Development": "HTML, CSS (SASS), JavaScript (React)",
+                "Back-End Development": "Node.js, Express.js, MySQL",
+                "Authentication and Security": "JSON Web Tokens (JWT), Passport.js",
+                "Libraries": "Axios, React Router, UUID, Knex, Dotenv, Cors",
+                "APIs": "Google Maps API or Leafletjs, Geolocation API"
+            },
+            "repo": {
+                "Front-end Repo": "https://github.com/Unknown-0perator/TaskEase",
+                "Back-end Repo": "https://github.com/Unknown-0perator/TaskEase-API"
+            },
+            "video": "/videos/taskease.mp4"
+        },
+        "Pat-Doc": {
+            "name": "Pat-Doc",
+            "logo": "/images/patdoc.png",
+            "introduction": "PatDoc is online web application developed to replace the manual appointment management system into an virtual platform which brings both the patients and the specialized doctors under the same platform.",
+            "features": [
+                "Responsive",
+                "Rating System",
+                "Secure",
+                "Redeem System"
+            ],
+            "technologies": {
+                "Front-End Development": "HTML, CSS, JavaScript (JQuery)",
+                "Back-End Development": "PHP",
+                "Database Development": "MySQL",
+                "Libraries": "Bootstarp",
+                "APIs": "FDA API"
+            },
+            "repo": {
+                "Repository": "https://github.com/Unknown-0perator/Pat-Doc"
+            }
+        }
+    }
+}

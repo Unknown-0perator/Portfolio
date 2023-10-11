@@ -1,0 +1,27 @@
+@use '../../styles/partials/variables' as *;
+
+.footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: .5rem;
+    padding: 1rem;
+
+    &__text {
+        color: $color-white;
+        font-size: 13px;
+
+    }
+
+    &__icon-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    &__link {}
+
+    &__icon {}
+}
