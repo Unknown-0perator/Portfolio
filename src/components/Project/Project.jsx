@@ -16,7 +16,7 @@ import VideoPlayer from '../VideoPlayer/VideoPlayer';
 
 
 
-const Project = () => {
+const Project = ({ projectSection }) => {
 
 
     const [folderStructure, setFolderStructure] = useState(true);
@@ -46,7 +46,7 @@ const Project = () => {
     const projectDetails = data.project_details[currentProject];
 
     return (
-        <section className="project-section">
+        <section className="project-section" ref={projectSection}>
             <div className="section-heading">Projects</div>
             <div className="project">
                 <div className="project__title-container">

@@ -1,9 +1,9 @@
 import './About.scss';
 
-const About = () => {
+const About = ({ aboutSection }) => {
 
     return (
-        <section className="about">
+        <section className="about" ref={aboutSection}>
 
             <div className="about__container">
 
