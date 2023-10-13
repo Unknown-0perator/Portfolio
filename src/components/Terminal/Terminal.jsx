@@ -1,8 +1,6 @@
 import './Terminal.scss';
-import maximizeIcon from '../../assests/icons/maximize.svg';
 import { useState } from 'react';
 import { useRef } from 'react';
-import { useEffect } from 'react';
 import ReactDOM from 'react-dom';
 
 const CommandList = () => {
@@ -93,7 +91,6 @@ const Terminal = () => {
         }}>
             <div className="terminal__toolbar-container">
                 <h3 className="terminal__heading">Terminal</h3>
-                <img src={maximizeIcon} alt="" className="terminal__icon" />
             </div>
             <div className="terminal__area">
                 <div ref={terminalOutputRef} className="terminal__output">

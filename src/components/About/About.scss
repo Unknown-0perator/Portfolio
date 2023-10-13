@@ -22,13 +22,19 @@
         gap: 1rem;
 
         @include tablet {
-            flex-direction: row;
+            flex-direction: row-reverse;
+            align-items: center;
             gap: 3rem;
         }
     }
 
 
     &__text {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
         max-width: 100%;
 
         @include tablet {
