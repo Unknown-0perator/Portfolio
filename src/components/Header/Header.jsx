@@ -1,6 +1,7 @@
 // Import the 'logo' image and styles
 import './Header.scss'
 import downloadIcon from '../../assests/icons/download.svg';
+import FileSaver from 'file-saver';
 
 // Import necessary React components and hooks
 import { useState } from 'react';
@@ -33,6 +34,13 @@ const Header = ({ aboutSection, projectSection }) => {
         })
     }
 
+    const saveFile = () => {
+        FileSaver.saveAs(
+            `${process.env.PUBLIC_URL}/resume/Ahmad_Akhtar.pdf`,
+            'Ahmad_Akhtar.pdf'
+        )
+    }
+
     return (
         <header className="header-section">
             <div className="header">
@@ -59,14 +67,17 @@ const Header = ({ aboutSection, projectSection }) => {
                             }} className="navbar__link">./Project</Link>
                         </li>
                         <li className="navbar__item">
-                            <button onClick={menuClose} className="navbar__link navbar__link--download"><img src={downloadIcon} alt="" className='navbar__icon' />Resume</button>
+                            <button onClick={() => {
+                                menuClose();
+                                saveFile();
+                            }} className="navbar__link navbar__link--download"><img src={downloadIcon} alt="" className='navbar__icon' />Resume</button>
                         </li>
 
                     </ul>
 
                 </nav>
             </div>
-        </header>
+        </header >
     )
 }
 
