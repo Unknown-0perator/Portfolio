@@ -49,18 +49,23 @@
     &__toolbar-container {
         border-bottom: 1px solid #808080;
         background: #2E333F;
-        padding: 10px 1rem;
 
-        @include tablet {
-            padding: 1rem;
-        }
+
     }
 
     &__toolbar {
         display: flex;
         justify-content: flex-start;
         align-items: center;
-        gap: 3rem;
+        gap: 1rem;
+    }
+
+    &__toolbar-icon-container {
+        padding: 10px 1rem;
+
+        @include tablet {
+            padding: 1rem;
+        }
     }
 
     &__toolbar-icon {

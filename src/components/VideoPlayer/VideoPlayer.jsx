@@ -8,6 +8,7 @@ import closeIcon from '../../assests/icons/close.svg';
 import fullScreen from '../../assests/icons/full-screen.svg';
 import fullScreenExit from '../../assests/icons/full-screen-exit.svg';
 
+
 const VideoPlayer = ({ projectDetails, handleClose }) => {
 
     const [isPlay, setIsPlay] = useState(false);

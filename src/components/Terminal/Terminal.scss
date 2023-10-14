@@ -100,3 +100,17 @@
         opacity: 1;
     }
 }
+
+.terminal-text {
+    width: 100%;
+    display: flex;
+    align-items: center;
+
+    &__command {
+        width: 30%;
+    }
+
+    &__description {
+        color: #CCCCCC;
+    }
+}
