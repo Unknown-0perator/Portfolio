@@ -25,6 +25,18 @@
             display: none;
         }
     }
+
+    &.fullScreen {
+        .control__icon--full-screen {
+            display: none;
+        }
+    }
+
+    &:not(.fullScreen) {
+        .control__icon--full-screen-exit {
+            display: none;
+        }
+    }
 }
 
 
@@ -58,6 +70,10 @@
             transition: transform .2s ease-in-out;
             z-index: 200;
         }
+
+        &--full-screen {}
+
+        &--full-screen-exit {}
     }
 
     &__timeline {

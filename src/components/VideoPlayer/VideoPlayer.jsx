@@ -5,10 +5,13 @@ import playIcon from '../../assests/icons/play.svg';
 import pauseIcon from '../../assests/icons/pause.svg';
 import scrubbingIcon from '../../assests/icons/scrub.svg';
 import closeIcon from '../../assests/icons/close.svg';
+import fullScreen from '../../assests/icons/full-screen.svg';
+import fullScreenExit from '../../assests/icons/full-screen-exit.svg';
 
 const VideoPlayer = ({ projectDetails, handleClose }) => {
 
-    const [isPlay, setIsPlay] = useState(false)
+    const [isPlay, setIsPlay] = useState(false);
+    const [isFullScreen, setIsFullScreen] = useState(false)
 
 
     const video = useRef(null)
@@ -21,6 +24,15 @@ const VideoPlayer = ({ projectDetails, handleClose }) => {
             video.current.play()
         } else {
             video.current.pause()
+        }
+    }
+
+    const toggleFullScreen = () => {
+        setIsFullScreen(!isFullScreen)
+        if (!isFullScreen && document.fullscreenElement === null) {
+            videoContainer.current.requestFullscreen();
+        } else {
+            document.exitFullscreen();
         }
     }
 
@@ -71,7 +83,7 @@ const VideoPlayer = ({ projectDetails, handleClose }) => {
                 <h3 className="description__project-name">TaskEase</h3>
                 <img src={closeIcon} onClick={handleClose} alt="" className="description__icon" />
             </div>
-            <div className={`video-player-container ${isPlay ? 'played' : ""}`} ref={videoContainer}>
+            <div className={`video-player-container ${isPlay ? 'played' : ""} ${isFullScreen ? 'fullScreen' : ""}`} ref={videoContainer}>
                 <div className="control">
                     <div className="control__item control__item--play-pause" onClick={togglePlay}>
                         <img src={playIcon} alt="play icon" className="control__icon control__icon--play" />
@@ -86,6 +98,10 @@ const VideoPlayer = ({ projectDetails, handleClose }) => {
                             </div>
                         </div>
                     </div>
+                    <div className="control__item control__item--play-pause" onClick={toggleFullScreen}>
+                        <img src={fullScreen} alt="play icon" className="control__icon control__icon--full-screen" />
+                        <img src={fullScreenExit} alt="pause icon" className="control__icon control__icon--full-screen-exit" />
+                    </div>
                 </div>
 
                 <video
@@ -95,6 +111,7 @@ const VideoPlayer = ({ projectDetails, handleClose }) => {
                     className="video-player"
                     poster={``}
                     ref={video}
+                    onClick={togglePlay}
 
                     onTimeUpdate={() => {
                         const percent = video.current.currentTime / video.current.duration;
