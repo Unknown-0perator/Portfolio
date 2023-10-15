@@ -3,6 +3,8 @@ import { useState } from 'react';
 import { useRef } from 'react';
 
 
+
+
 const Terminal = () => {
     const [terminalInput, setTerminalInput] = useState("");
     const [commentHistory, setCommentHistory] = useState([])
@@ -41,6 +43,7 @@ const Terminal = () => {
     }
 
 
+
     const addLine = (text, style, time) => {
         setTimeout(() => {
             let t = formatInput(text)
@@ -66,7 +69,11 @@ const Terminal = () => {
 
     const handleKeyDown = (event) => {
         if (event.key === 'Enter') {
-            setCommentHistory([...commentHistory, terminalInput]);
+            if (terminalInput.toLowerCase() === 'history') {
+                setCommentHistory([...commentHistory])
+            } else {
+                setCommentHistory([...commentHistory, terminalInput]);
+            }
             setGit(commentHistory.length);
             addLine(`Unknown-0perator: ${terminalInput}`, 'no-animation', 0);
             commander(terminalInput.toLowerCase());
@@ -108,24 +115,56 @@ const Terminal = () => {
                 ];
                 loopLines(helpLines, "terminal-text", 80);
                 break;
-            // case "linkedin":
-            //     addLine("Opening LinkedIn...", "terminal-text", 0);
-            //     newTab('https://www.linkedin.com/in/ahmadrashidakhtar/');
-            //     break;
+            case "linkedin":
+                addLine("Opening LinkedIn...", "terminal-text", 0);
+                newTab('https://www.linkedin.com/in/ahmadrashidakhtar/');
+                break;
 
-            // case "github":
-            //     addLine("Opening GitHub...", "color__secondary", 0);
-            //     newTab('https://github.com/Unknown-0perator/');
-            //     break;
+            case "github":
+                addLine("Opening GitHub...", "color__secondary", 0);
+                newTab('https://github.com/Unknown-0perator/');
+                break;
+
+            case "whoami":
+                const aboutMe = [
+                    `<br>
+                    <p>Hey, I am Ahmad Akhtar, a software engineer, 
+                    and full-stack developer based in Vancouver, Canada. 
+                    I graduated from Jain University, Bangalore, India, 
+                    with a degree in Software Engineering. Later, 
+                    I attended a Software Engineering bootcamp at BrainStation in Vancouver, Canada. 
+                    My main hobby is playing soccer, and I also enjoy solving mathematics problems. 
+                    I have knowledge of various programming languages, but I mostly prefer JavaScript.
+                    </p>`,
+                    `<p>
+                    If you would like to contact me, feel free to reach out to me on LinkedIn.
+                    </p>
+                    <br>`
+                ]
+                loopLines(aboutMe, 'terminal__text--about', 80)
+                break;
+            case "history":
+                if (commentHistory.length > 0) {
+                    addLine("<br>", "", 0);
+                    loopLines(commentHistory, "color__secondary", 80);
+                    addLine('<br>', "", commentHistory.length * 150);
+                } else {
+                    addLine('<br>', "", 0)
+                    addLine("You haven't type any command", "", 80);
+                    addLine('<br>', "", 160)
+                }
+                break;
             case "clear":
                 setTimeout(() => {
-                    if (terminalOutputRef.current) {
+                    if (terminalOutputRef.current && beforeOutputRef) {
                         terminalOutputRef.current.innerHTML = `<a className="terminal__output--before" ref={beforeOutputRef}></a>`
                     }
                 }, 1)
                 break;
             default:
-                addLine('Command not found')
+                addLine('<br>', "", 0)
+                addLine('Invalid command', "", 80)
+                addLine('<br>', "", 160)
         }
     }
 
@@ -142,7 +181,7 @@ const Terminal = () => {
             </div>
             <div className="terminal__area" ref={terminalAreaRef}>
                 <div ref={terminalOutputRef} className="terminal__output">
-                    <a className="terminal__output--before" ref={beforeOutputRef}></a>
+                    <span className="terminal__output--before" ref={beforeOutputRef}></span>
                 </div>
                 <div className="terminal__command">
                     <textarea

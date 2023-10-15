@@ -48,14 +48,15 @@
         color: #fff;
         padding: 1rem;
         overflow-x: hidden;
+        position: relative;
     }
 
-    &__command {}
-
-    &__input {
+    &__command {
         position: absolute;
         left: -100000rem;
     }
+
+    &__input {}
 
     &__liner {
         animation: show 0.5s ease forwards;
