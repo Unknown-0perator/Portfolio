@@ -107,7 +107,7 @@ const VideoPlayer = ({ projectDetails, handleClose }) => {
 
                 <video
 
-                    src={`${process.env.PUBLIC_URL}/videos/taskease.mp4`}
+                    src={`${process.env.PUBLIC_URL}${projectDetails.video}`}
                     type="video/mp4"
                     className="video-player"
                     poster={``}
