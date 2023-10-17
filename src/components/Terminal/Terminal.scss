@@ -80,6 +80,7 @@
     &__typer {}
 
     &__cursor {
+        position: relative;
         font-weight: 700;
         color: #00ff00;
         animation: blinker 1s linear infinite;

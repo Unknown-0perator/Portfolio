@@ -1,40 +1,60 @@
 import './Terminal.scss';
 import { useState } from 'react';
-import { useRef } from 'react';
+import { useRef, useEffect } from 'react';
 
 
 
 
 const Terminal = () => {
-    const [terminalInput, setTerminalInput] = useState("");
-    const [commentHistory, setCommentHistory] = useState([])
+    const [terminalInput, setTerminalInput] = useState('');
+    const [commentHistory, setCommentHistory] = useState([]);
     const [git, setGit] = useState(0);
-    const [pw, setPw] = useState(false)
-    const cursorRef = useRef();
+    const inputRef = useRef(null);
+    const cursorRef = useRef(null);
+    const terminalOutputRef = useRef(null);
 
-    const inputRef = useRef();
-    const beforeOutputRef = useRef();
-    const terminalAreaRef = useRef();
-    const commandRef = useRef();
-
-    const typeIt = (e) => {
-        e = e || window.event;
-        let tw = e.target.value;
-
-        if (!pw) {
-            setTerminalInput(formatInput(tw))
+    useEffect(() => {
+        addLine('Type help for command list', '', 80);
+        if (cursorRef.current) {
+            cursorRef.current = document.querySelector('.terminal__cursor');
         }
-    }
+    }, []);
 
-    const moveCursor = (count, e) => {
+    const addLine = (text, style, time) => {
+        setTimeout(() => {
+            const formattedText = text.replace(/(\r\n|\n|\r)/g, '');
+            const newLine = document.createElement('p');
+            newLine.innerHTML = formattedText;
+            newLine.className = style;
+            terminalOutputRef.current.appendChild(newLine);
+            terminalOutputRef.current.scrollTo(0, terminalOutputRef.current.scrollHeight);
+        }, time);
+    };
+
+    // const typeIt = (e) => {
+    //     e = e || window.event;
+    //     let tw = e.target.value;
+
+    //     if (!pw) {
+    //         setTerminalInput(formatInput(tw))
+    //     }
+    // }
+
+    const moveCursor = (e) => {
         e = e || window.event;
         let keycode = e.keyCode || e.which;
-        if (keycode == 37 && parseInt(cursorRef.current.style.left) >= 0 - (count - 1) * 10) {
-            cursorRef.current.style.left = parseInt(cursorRef.current.style.left) - 10 + "px";
-        } else if (keycode == 39 && parseInt(cursorRef.current.style.left) + 10 <= 0) {
-            cursorRef.current.style.left = parseInt(cursorRef.current.style.left) + 10 + "px";
+        const cursorPosition = parseInt(cursorRef.current.style.left || 0);
+        const cursorWidth = cursorRef.current.offsetWidth;
+
+        // Calculate the maximum left position considering cursor width
+        const maxLeftPosition = -cursorWidth;
+
+        if (keycode === 37 && cursorPosition > maxLeftPosition) {
+            cursorRef.current.style.left = cursorPosition - 10 + "px";
+        } else if (keycode === 39 && cursorPosition < 0) {
+            cursorRef.current.style.left = cursorPosition + 10 + "px";
         }
-    }
+    };
 
     const newTab = (link) => {
         setTimeout(() => {
@@ -42,18 +62,6 @@ const Terminal = () => {
         }, 500)
     }
 
-
-
-    const addLine = (text, style, time) => {
-        setTimeout(() => {
-            let t = formatInput(text)
-            let next = document.createElement('p');
-            next.innerHTML = t;
-            next.className = style;
-            beforeOutputRef.current.parentNode.insertBefore(next, beforeOutputRef.current);
-            terminalAreaRef.current.scrollTo(0, document.body.offsetHeight);
-        }, time);
-    };
 
     const loopLines = (lines, style, timeInterval) => {
         lines.forEach((line, index) => {
@@ -65,12 +73,12 @@ const Terminal = () => {
 
     const handleInputChange = (e) => {
         setTerminalInput(e.target.value);
-    }
+    };
 
     const handleKeyDown = (event) => {
         if (event.key === 'Enter') {
             if (terminalInput.toLowerCase() === 'history') {
-                setCommentHistory([...commentHistory])
+                setCommentHistory([...commentHistory]);
             } else {
                 setCommentHistory([...commentHistory, terminalInput]);
             }
@@ -82,22 +90,16 @@ const Terminal = () => {
         } else if (event.key === 'ArrowUp' && git !== 0) {
             setGit((prevGit) => prevGit - 1);
             setTerminalInput(commentHistory[git - 1]);
-            commandRef.current.innerHTML = commentHistory[git - 1];
         } else if (event.key === 'ArrowDown' && git !== commentHistory.length) {
             setGit((prevGit) => prevGit + 1);
             setTerminalInput(commentHistory[git + 1] || '');
-            commandRef.current.innerHTML = commentHistory[git + 1] || '';
         }
     };
-
     const formatInput = (text) => {
         return text.replace(/(\r\n|\n|\r)/g, '');
     }
 
 
-
-
-    const terminalOutputRef = useRef();
 
 
     const commander = (command) => {
@@ -119,12 +121,10 @@ const Terminal = () => {
                 addLine("Opening LinkedIn...", "terminal-text", 0);
                 newTab('https://www.linkedin.com/in/ahmadrashidakhtar/');
                 break;
-
             case "github":
                 addLine("Opening GitHub...", "color__secondary", 0);
                 newTab('https://github.com/Unknown-0perator/');
                 break;
-
             case "whoami":
                 const aboutMe = [
                     `<br>
@@ -141,7 +141,7 @@ const Terminal = () => {
                     </p>
                     <br>`
                 ]
-                loopLines(aboutMe, 'terminal__text--about', 80)
+                loopLines(aboutMe, 'terminal__text--about', 80);
                 break;
             case "history":
                 if (commentHistory.length > 0) {
@@ -149,52 +149,47 @@ const Terminal = () => {
                     loopLines(commentHistory, "color__secondary", 80);
                     addLine('<br>', "", commentHistory.length * 150);
                 } else {
-                    addLine('<br>', "", 0)
-                    addLine("You haven't type any command", "", 80);
-                    addLine('<br>', "", 160)
+                    addLine('<br>', "", 0);
+                    addLine("You haven't typed any command", "", 80);
+                    addLine('<br>', "", 160);
                 }
                 break;
             case "clear":
                 setTimeout(() => {
-                    if (terminalOutputRef.current && beforeOutputRef) {
-                        terminalOutputRef.current.innerHTML = `<a className="terminal__output--before" ref={beforeOutputRef}></a>`
+                    if (terminalOutputRef.current) {
+                        terminalOutputRef.current.innerHTML = '';
                     }
-                }, 1)
+                }, 1);
                 break;
             default:
-                addLine('<br>', "", 0)
-                addLine('Invalid command', "", 80)
-                addLine('<br>', "", 160)
+                addLine('<br>', "", 0);
+                addLine('Invalid command', "", 80);
+                addLine('<br>', "", 160);
         }
-    }
+    };
 
 
 
 
     return (
-        <section className="terminal" onClick={e => {
-            e.preventDefault()
-            inputRef.current.focus();
-        }}>
+        <section className="terminal" onClick={(e) => { e.preventDefault(); inputRef.current.focus(); }}>
             <div className="terminal__toolbar-container">
                 <h3 className="terminal__heading">Terminal</h3>
             </div>
-            <div className="terminal__area" ref={terminalAreaRef}>
-                <div ref={terminalOutputRef} className="terminal__output">
-                    <span className="terminal__output--before" ref={beforeOutputRef}></span>
-                </div>
+            <div className="terminal__area">
+                <div className="terminal__output" ref={terminalOutputRef}></div>
                 <div className="terminal__command">
                     <textarea
                         className="terminal__input"
                         value={terminalInput}
                         onChange={handleInputChange}
                         ref={inputRef}
-                        onKeyDown={handleKeyDown}
-                    >
-                    </textarea>
+                        onKeyDown={e => { handleKeyDown(e); moveCursor(e) }}
+                    ></textarea>
                 </div>
                 <div className="terminal__liner">
-                    <span className="terminal__typer" ref={commandRef}>{terminalInput}</span><b ref={cursorRef} className="terminal__cursor" >█</b>
+                    <span className="terminal__typer">{terminalInput}</span>
+                    <b className="terminal__cursor" ref={cursorRef}>█</b>
                 </div>
             </div>
         </section>
