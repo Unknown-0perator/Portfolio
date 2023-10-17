@@ -6,16 +6,19 @@ import About from '../../components/About/About';
 import Skill from '../../components/Skill/Skill';
 import Project from '../../components/Project/Project';
 import Footer from '../../components/Footer/Footer';
+import { useRef } from 'react';
 
 const LandingPage = () => {
+    const aboutSection = useRef();
+    const projectSection = useRef();
     return (
         <>
-            <Header />
+            <Header aboutSection={aboutSection} projectSection={projectSection} />
             <Banner />
             <Divider />
-            <About />
+            <About aboutSection={aboutSection} />
             <Skill />
-            <Project />
+            <Project projectSection={projectSection} />
             <Footer />
         </>
     )

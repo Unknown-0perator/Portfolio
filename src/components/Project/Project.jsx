@@ -16,7 +16,7 @@ import VideoPlayer from '../VideoPlayer/VideoPlayer';
 
 
 
-const Project = () => {
+const Project = ({ projectSection }) => {
 
 
     const [folderStructure, setFolderStructure] = useState(true);
@@ -46,22 +46,27 @@ const Project = () => {
     const projectDetails = data.project_details[currentProject];
 
     return (
-        <section className="project-section">
+        <section className="project-section" ref={projectSection}>
             <div className="section-heading">Projects</div>
             <div className="project">
                 <div className="project__title-container">
-                    <h3 className="project__title">project</h3>
+                    <h3 className="project__title">projects</h3>
                 </div>
                 <div className="project__toolbar-container">
+
                     <div className="project__toolbar">
-                        <img onClick={e => {
+                        <div onClick={e => {
                             e.preventDefault();
                             setProjectOpen(false);
-                        }} src={backIcon} alt="" className="project__toolbar-icon" />
-                        <img onClick={e => {
+                        }} className="project__toolbar-icon-container">
+                            <img src={backIcon} alt="" className="project__toolbar-icon" />
+                        </div>
+                        <div onClick={e => {
                             e.preventDefault();
                             setProjectOpen(true)
-                        }} src={frontIcon} alt="" className="project__toolbar-icon" />
+                        }} className="project__toolbar-icon-container">
+                            <img src={frontIcon} alt="" className="project__toolbar-icon" />
+                        </div>
                     </div>
                 </div>
                 <div className="project__detail-container">

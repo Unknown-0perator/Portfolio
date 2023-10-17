@@ -3,7 +3,7 @@
 .terminal {
 
     border: 1px solid #808080;
-    background: #000;
+    background: #404453;
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -48,14 +48,15 @@
         color: #fff;
         padding: 1rem;
         overflow-x: hidden;
+        position: relative;
     }
 
-    &__command {}
-
-    &__input {
+    &__command {
         position: absolute;
         left: -100000rem;
     }
+
+    &__input {}
 
     &__liner {
         animation: show 0.5s ease forwards;
@@ -79,6 +80,7 @@
     &__typer {}
 
     &__cursor {
+        position: relative;
         font-weight: 700;
         color: #00ff00;
         animation: blinker 1s linear infinite;
@@ -98,5 +100,24 @@
 
     to {
         opacity: 1;
+    }
+}
+
+.terminal-text {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+
+    @include tablet {
+        font-size: 16px;
+    }
+
+    &__command {
+        width: 30%;
+    }
+
+    &__description {
+        color: #CCCCCC;
     }
 }

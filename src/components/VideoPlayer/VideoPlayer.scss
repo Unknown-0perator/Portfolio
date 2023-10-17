@@ -25,6 +25,18 @@
             display: none;
         }
     }
+
+    &.fullScreen {
+        .control__icon--full-screen {
+            display: none;
+        }
+    }
+
+    &:not(.fullScreen) {
+        .control__icon--full-screen-exit {
+            display: none;
+        }
+    }
 }
 
 
@@ -44,6 +56,7 @@
 
     &__icon {
         width: 14px;
+        cursor: pointer;
 
         &--play {}
 
@@ -58,6 +71,10 @@
             transition: transform .2s ease-in-out;
             z-index: 200;
         }
+
+        &--full-screen {}
+
+        &--full-screen-exit {}
     }
 
     &__timeline {
