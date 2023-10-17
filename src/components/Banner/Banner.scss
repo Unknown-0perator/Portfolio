@@ -1,17 +1,17 @@
 @use '../../styles/partials/mixins' as *;
 
 .banner {
-    height: 150vh;
+    height: 120vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
     padding: 2rem;
     margin-top: 10rem;
-    gap: 10rem;
+    gap: 5rem;
 
     @include tablet {
-        height: 100vh;
+        height: 95vh;
         flex-direction: row;
         justify-content: space-around;
         gap: 2rem;
@@ -54,6 +54,36 @@
 
         @include tablet {
             font-size: 16px;
+        }
+    }
+
+    &__icon-container {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    &__link {
+        background-color: #404453;
+        padding: .5rem 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        gap: 4px;
+        border: 1px solid #808080;
+        font-size: 13px;
+
+        @include tablet {
+            font-size: 16px;
+        }
+    }
+
+    &__icon {
+        width: 20px;
+
+        @include tablet {
+            width: 24px;
         }
     }
 
