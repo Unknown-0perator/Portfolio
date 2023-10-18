@@ -1,11 +1,12 @@
 import './Terminal.scss';
 import { useState } from 'react';
 import { useRef, useEffect } from 'react';
+import { scrollToSection } from '../../utilities/utilities';
 
 
 
 
-const Terminal = () => {
+const Terminal = ({ projectSection }) => {
     const [terminalInput, setTerminalInput] = useState('');
     const [commentHistory, setCommentHistory] = useState([]);
     const [git, setGit] = useState(0);
@@ -30,15 +31,6 @@ const Terminal = () => {
             terminalOutputRef.current.scrollTo(0, terminalOutputRef.current.scrollHeight);
         }, time);
     };
-
-    // const typeIt = (e) => {
-    //     e = e || window.event;
-    //     let tw = e.target.value;
-
-    //     if (!pw) {
-    //         setTerminalInput(formatInput(tw))
-    //     }
-    // }
 
     const moveCursor = (e) => {
         e = e || window.event;
@@ -107,12 +99,14 @@ const Terminal = () => {
             case "help":
                 const helpLines = [
                     "<br>",
-                    '<span class="terminal-text__command">whoami</span>          <span class="terminal-text__description">About me</span>  ',
-                    '<span class="terminal-text__command">help</span>         <span class="terminal-text__description">Help</span>',
-                    '<span class="terminal-text__command">github</span>          <span class="terminal-text__description">GitHub Account</span>  ',
-                    '<span class="terminal-text__command">linkedin</span>         <span class="terminal-text__description">LinkedIn Account</span>',
-                    '<span class="terminal-text__command">history</span>          <span class="terminal-text__description">Terminal History</span>  ',
-                    '<span class="terminal-text__command">clear</span>         <span class="terminal-text__description">Clear Terminal</span>',
+                    '<span class="terminal-text__command">whoami</span><span class="terminal-text__description">About me</span>  ',
+                    '<span class="terminal-text__command">help</span><span class="terminal-text__description">Help</span>',
+                    '<span class="terminal-text__command">github</span><span class="terminal-text__description">GitHub Account</span>  ',
+                    '<span class="terminal-text__command">linkedin</span><span class="terminal-text__description">LinkedIn Account</span>',
+                    '<span class="terminal-text__command">history</span><span class="terminal-text__description">Terminal History</span>  ',
+                    '<span class="terminal-text__command">project</span><span class="terminal-text__description">My Projects</span>',
+                    '<span class="terminal-text__command">status</span><span class="terminal-text__description">Status</span>',
+                    '<span class="terminal-text__command">clear</span><span class="terminal-text__description">Clear Terminal</span>',
                     "<br>",
                 ];
                 loopLines(helpLines, "terminal-text", 80);
@@ -153,6 +147,9 @@ const Terminal = () => {
                     addLine("You haven't typed any command", "", 80);
                     addLine('<br>', "", 160);
                 }
+                break;
+            case "project":
+                scrollToSection(projectSection);
                 break;
             case "clear":
                 setTimeout(() => {

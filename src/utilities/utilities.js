@@ -4,3 +4,10 @@ export const convertObjToArray = (obj) => {
         value: value
     }))
 }
+
+export const scrollToSection = (elementRef) => {
+    window.scrollTo({
+        top: elementRef.current.offsetTop - 70,
+        behavior: "smooth"
+    })
+}
