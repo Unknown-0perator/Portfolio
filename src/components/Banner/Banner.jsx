@@ -4,7 +4,7 @@ import githubIcon from '../../assests/icons/github.svg';
 import { Link } from 'react-router-dom';
 import Terminal from '../Terminal/Terminal';
 
-const Banner = () => {
+const Banner = ({ projectSection }) => {
     return (
         <section className="banner">
             <div className="banner__text-container">
@@ -18,7 +18,7 @@ const Banner = () => {
                     <Link to='https://www.linkedin.com/in/ahmadrashidakhtar/' className='banner__link'><img src={linkedInIcon} alt="" className="banner__icon" />LinkedIn</Link>
                 </div>
             </div>
-            <Terminal />
+            <Terminal projectSection={projectSection} />
         </section>
     )
 

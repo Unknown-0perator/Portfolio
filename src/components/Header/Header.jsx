@@ -2,6 +2,7 @@
 import './Header.scss'
 import downloadIcon from '../../assests/icons/download.svg';
 import FileSaver from 'file-saver';
+import { scrollToSection } from '../../utilities/utilities';
 
 // Import necessary React components and hooks
 import { useState } from 'react';
@@ -20,12 +21,6 @@ const Header = ({ aboutSection, projectSection }) => {
         setMenuOpen(false);
     }
 
-    const scrollToSection = (elementRef) => {
-        window.scrollTo({
-            top: elementRef.current.offsetTop - 70,
-            behavior: "smooth"
-        })
-    }
 
     const scrollToTop = () => {
         window.scrollTo({

@@ -10,6 +10,8 @@
 
     @include tablet {
         padding: 32px 36px;
+        height: 75vh;
+        justify-content: center;
     }
 
     @include desktop {
