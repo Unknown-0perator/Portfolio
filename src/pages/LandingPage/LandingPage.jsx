@@ -14,7 +14,7 @@ const LandingPage = () => {
     return (
         <>
             <Header aboutSection={aboutSection} projectSection={projectSection} />
-            <Banner />
+            <Banner projectSection={projectSection} />
             <Divider />
             <About aboutSection={aboutSection} />
             <Skill />
