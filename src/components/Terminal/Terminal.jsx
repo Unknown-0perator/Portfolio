@@ -13,12 +13,14 @@ const Terminal = ({ projectSection }) => {
     const inputRef = useRef(null);
     const cursorRef = useRef(null);
     const terminalOutputRef = useRef(null);
+    const terminalAreaRef = useRef(null)
 
     useEffect(() => {
-        addLine('Type help for command list', '', 80);
+        addLine('Type <span class="terminal-text__banner--bold">help</span> for command list', 'terminal-text__banner', 80);
         if (cursorRef.current) {
             cursorRef.current = document.querySelector('.terminal__cursor');
         }
+
     }, []);
 
     const addLine = (text, style, time) => {
@@ -28,7 +30,7 @@ const Terminal = ({ projectSection }) => {
             newLine.innerHTML = formattedText;
             newLine.className = style;
             terminalOutputRef.current.appendChild(newLine);
-            terminalOutputRef.current.scrollTo(0, terminalOutputRef.current.scrollHeight);
+            terminalAreaRef.current.scrollTop = terminalAreaRef.current.scrollHeight;
         }, time);
     };
 
@@ -38,7 +40,6 @@ const Terminal = ({ projectSection }) => {
         const cursorPosition = parseInt(cursorRef.current.style.left || 0);
         const cursorWidth = cursorRef.current.offsetWidth;
 
-        // Calculate the maximum left position considering cursor width
         const maxLeftPosition = -cursorWidth;
 
         if (keycode === 37 && cursorPosition > maxLeftPosition) {
@@ -75,7 +76,7 @@ const Terminal = ({ projectSection }) => {
                 setCommentHistory([...commentHistory, terminalInput]);
             }
             setGit(commentHistory.length);
-            addLine(`Unknown-0perator: ${terminalInput}`, 'no-animation', 0);
+            addLine(`Unknown-0perator: ${terminalInput}`, 'terminal-text__banner', 0);
             commander(terminalInput.toLowerCase());
             setTerminalInput('');
             event.preventDefault();
@@ -90,9 +91,6 @@ const Terminal = ({ projectSection }) => {
     const formatInput = (text) => {
         return text.replace(/(\r\n|\n|\r)/g, '');
     }
-
-
-
 
     const commander = (command) => {
         switch (formatInput(command.toLowerCase())) {
@@ -112,11 +110,11 @@ const Terminal = ({ projectSection }) => {
                 loopLines(helpLines, "terminal-text", 80);
                 break;
             case "linkedin":
-                addLine("Opening LinkedIn...", "terminal-text", 0);
+                addLine("Opening LinkedIn...", "terminal-text__banner", 0);
                 newTab('https://www.linkedin.com/in/ahmadrashidakhtar/');
                 break;
             case "github":
-                addLine("Opening GitHub...", "color__secondary", 0);
+                addLine("Opening GitHub...", "terminal-text__banner", 0);
                 newTab('https://github.com/Unknown-0perator/');
                 break;
             case "whoami":
@@ -131,26 +129,31 @@ const Terminal = ({ projectSection }) => {
                     I have knowledge of various programming languages, but I mostly prefer JavaScript.
                     </p>`,
                     `<p>
-                    If you would like to contact me, feel free to reach out to me on LinkedIn.
+                    If you would like to contact me, feel free to reach out to me on <a href="https://www.linkedin.com/in/ahmadrashidakhtar/" class="terminal-text__banner--link">LinkedIn</a>.
                     </p>
                     <br>`
                 ]
-                loopLines(aboutMe, 'terminal__text--about', 80);
+                loopLines(aboutMe, 'terminal-text__banner', 80);
                 break;
             case "history":
                 if (commentHistory.length > 0) {
                     addLine("<br>", "", 0);
-                    loopLines(commentHistory, "color__secondary", 80);
+                    loopLines(commentHistory, "terminal-text__banner", 80);
                     addLine('<br>', "", commentHistory.length * 150);
                 } else {
                     addLine('<br>', "", 0);
-                    addLine("You haven't typed any command", "", 80);
+                    addLine("You haven't typed any command", "terminal-text__banner", 80);
                     addLine('<br>', "", 160);
                 }
                 break;
             case "project":
                 scrollToSection(projectSection);
                 break;
+            case "status":
+                addLine('<br>', "", 0);
+                addLine('Currently working on Personal Projects', "terminal-text__banner", 80);
+                addLine('<br>', "", 160);
+                break
             case "clear":
                 setTimeout(() => {
                     if (terminalOutputRef.current) {
@@ -160,7 +163,7 @@ const Terminal = ({ projectSection }) => {
                 break;
             default:
                 addLine('<br>', "", 0);
-                addLine('Invalid command', "", 80);
+                addLine('Invalid command', "terminal-text__banner", 80);
                 addLine('<br>', "", 160);
         }
     };
@@ -173,7 +176,7 @@ const Terminal = ({ projectSection }) => {
             <div className="terminal__toolbar-container">
                 <h3 className="terminal__heading">Terminal</h3>
             </div>
-            <div className="terminal__area">
+            <div className="terminal__area" ref={terminalAreaRef}>
                 <div className="terminal__output" ref={terminalOutputRef}></div>
                 <div className="terminal__command">
                     <textarea

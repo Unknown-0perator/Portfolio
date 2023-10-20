@@ -109,12 +109,39 @@
     align-items: center;
     font-size: 14px;
 
+    &__banner {
+        font-size: 14px;
+        line-height: 18px;
+        color: #F5F5F5;
+        font-weight: 400;
+
+        @include tablet {
+            font-size: 16px;
+            line-height: 20px;
+        }
+
+        &--bold {
+            font-weight: 600;
+        }
+
+        &--link {
+            font-weight: 600;
+            color: #23b6d8;
+            cursor: pointer;
+        }
+    }
+
+
     @include tablet {
         font-size: 16px;
     }
 
     &__command {
         width: 30%;
+
+        &--bold {
+            font-weight: 600;
+        }
     }
 
     &__description {
