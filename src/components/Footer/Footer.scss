@@ -1,4 +1,5 @@
 @use '../../styles/partials/variables' as *;
+@use '../../styles//partials//mixins' as *;
 
 .footer {
     display: flex;
@@ -23,5 +24,13 @@
 
     &__link {}
 
-    &__icon {}
+    &__icon {
+        width: 20px;
+        height: 20px;
+
+        @include tablet {
+            width: 24px;
+            height: 24px;
+        }
+    }
 }

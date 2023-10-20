@@ -180,6 +180,8 @@ const Terminal = ({ projectSection }) => {
                 <div className="terminal__output" ref={terminalOutputRef}></div>
                 <div className="terminal__command">
                     <textarea
+                        aria-label='Terminal Input'
+                        name='terminal-input'
                         className="terminal__input"
                         value={terminalInput}
                         onChange={handleInputChange}
