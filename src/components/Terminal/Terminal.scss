@@ -49,6 +49,12 @@
         padding: 1rem;
         overflow-x: hidden;
         position: relative;
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
     }
 
     &__command {
