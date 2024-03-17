@@ -1,15 +1,14 @@
 import './Project.scss';
-import backIcon from '../../assests/icons/backward.svg';
-import frontIcon from '../../assests/icons/forward.svg';
-import recentIcon from '../../assests/icons/recent.svg';
-import projectIcon from '../../assests/icons/project.svg';
-import folderIcon from '../../assests/icons/folder.svg';
-import textIcon from '../../assests/icons/text.svg';
-import videoIcon from '../../assests/icons/video.svg';
+import backIcon from '../../assets/icons/backward.svg';
+import frontIcon from '../../assets/icons/forward.svg';
+import recentIcon from '../../assets/icons/recent.svg';
+import projectIcon from '../../assets/icons/project.svg';
+import folderIcon from '../../assets/icons/folder.svg';
+import textIcon from '../../assets/icons/text.svg';
+import videoIcon from '../../assets/icons/video.svg';
 
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
-import data from '../../assests/data/data.json';
+import data from '../../assets/data/data.json';
 import ProjectDetail from '../ProjectDetail/ProjectDetail';
 import VideoPlayer from '../VideoPlayer/VideoPlayer';
 

@@ -1,6 +1,6 @@
 import './ProjectDetail.scss';
 import { convertObjToArray } from '../../utilities/utilities';
-import closeIcon from '../../assests/icons/close.svg';
+import closeIcon from '../../assets/icons/close.svg';
 import { Link } from 'react-router-dom';
 
 const ProjectDetail = ({ projectDetails, handleClose }) => {

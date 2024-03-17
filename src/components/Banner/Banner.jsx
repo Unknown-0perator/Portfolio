@@ -1,6 +1,6 @@
 import './Banner.scss';
-import linkedInIcon from '../../assests/icons/linkedIn.svg';
-import githubIcon from '../../assests/icons/github.svg';
+import linkedInIcon from '../../assets/icons/linkedIn.svg';
+import githubIcon from '../../assets/icons/github.svg';
 import { Link } from 'react-router-dom';
 import Terminal from '../Terminal/Terminal';
 

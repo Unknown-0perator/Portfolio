@@ -1,12 +1,12 @@
 import './VideoPlayer.scss';
 import { useState, useRef } from 'react';
 
-import playIcon from '../../assests/icons/play.svg';
-import pauseIcon from '../../assests/icons/pause.svg';
-import scrubbingIcon from '../../assests/icons/scrub.svg';
-import closeIcon from '../../assests/icons/close.svg';
-import fullScreen from '../../assests/icons/full-screen.svg';
-import fullScreenExit from '../../assests/icons/full-screen-exit.svg';
+import playIcon from '../../assets/icons/play.svg';
+import pauseIcon from '../../assets/icons/pause.svg';
+import scrubbingIcon from '../../assets/icons/scrub.svg';
+import closeIcon from '../../assets/icons/close.svg';
+import fullScreen from '../../assets/icons/full-screen.svg';
+import fullScreenExit from '../../assets/icons/full-screen-exit.svg';
 
 
 const VideoPlayer = ({ projectDetails, handleClose }) => {

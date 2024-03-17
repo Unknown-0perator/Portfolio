@@ -1,6 +1,6 @@
 // Import the 'logo' image and styles
 import './Header.scss'
-import downloadIcon from '../../assests/icons/download.svg';
+import downloadIcon from '../../assets/icons/download.svg';
 import FileSaver from 'file-saver';
 import { scrollToSection } from '../../utilities/utilities';
 
