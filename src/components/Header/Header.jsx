@@ -31,8 +31,8 @@ const Header = ({ aboutSection, projectSection }) => {
 
     const saveFile = () => {
         FileSaver.saveAs(
-            `${process.env.PUBLIC_URL}/resume/Ahmad_Akhtar.pdf`,
-            'Ahmad_Akhtar.pdf'
+            `${process.env.PUBLIC_URL}/resume/Ahmad_Akhtar-resume.pdf`,
+            'Ahmad_Akhtar-resume.pdf'
         )
     }
 
